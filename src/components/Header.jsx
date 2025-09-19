@@ -1,37 +1,48 @@
-import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import icone from '../assets/icone.png';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes, faMagnifyingGlass, faBookmark, } from "@fortawesome/free-solid-svg-icons";
+import icone from "../assets/icone.png";
 
-function Header() {
+export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
 
-    {
-        isOpen && (
-            <>
-                <div onClick={() => setIsOpen(!alse)} className="fixed inset-0 bg-black">
-                    <nav className="fixed top-0"></nav>
-                </div>
-            </>
-        )
-    }
-
     return (
-        <header className="text-xl bg-black h-15 text-white flex p-4 justify-between items-center">
-            <div className="cursor-pointer flex justify-between items-center">
-                <button onClick={() => setIsOpen(!setIsOpen)} className="hidden p-2">
-                    {isOpen ? (
-                        <FontAwesomeIcon icon={faTimes} size="lg" className="cursor-pointer" />
-                    ) : (
-                        <FontAwesomeIcon icon={faBars} size="lg" className="cursor-pointer" />
-                    )}
-                </button>
-                <Link to="/"><img src={icone} alt="ícone GNL" className="h-15" /></Link>
-            </div>
-            <Link to="/search"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
-        </header>
-    )
-}
+        <div className="text-xl h-screen flex flex-col">
+            <header className="bg-blackBlue text-newWhite flex items-center justify-between px-4 py-3 h-16">
+                <div className="flex items-center">
+                    {/* botão visível por padrão (mobile), escondido em telas grandes */}
+                    <button
+                        type="button"
+                        onClick={() => setIsOpen(prev => !prev)}
+                        className="p-2 block xl:hidden"
+                    >
+                        <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="lg" />
+                    </button>
 
-export default Header;
+                    <Link to="/">
+                        <img src={icone} alt="ícone GNL" className="h-17 w-auto" />
+                    </Link>
+                </div>
+
+                <div className="text-newWhite text-xl flex gap-4">
+                    <Link to="/favorite" className="hidden xl:block">
+                        <FontAwesomeIcon icon={faBookmark} />
+                    </Link>
+                    <Link to="/search">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Link>
+                </div>
+            </header>
+
+            {isOpen && (
+                <div className="flex-1 bg-blackBlue p-4 text-sm text-newWhite font-bold">
+                    <nav className="flex flex-col gap-4">
+                        <Link to="/" onClick={() => setIsOpen(false)}>Início</Link>
+                        <Link to="/favorite" onClick={() => setIsOpen(false)}>Favoritos</Link>
+                    </nav>
+                </div>
+            )}
+        </div>
+    );
+}
