@@ -1,10 +1,23 @@
 @import "tailwindcss";
 
+:root {
+    --color-whiteBrown: #a9927d;
+    --color-blackBrown: #5e503f;
+}
+
 @theme {
     --color-newBlack: #0a0908;
     --color-blackBlue: #22333b;
     --color-newWhite: #f2f4f3;
-    --color-whiteBrown: #a9927d;
-    --color-blackBrown: #5e503f;
+    --color-whiteBrown: var(--color-whiteBrown);
+    --color-blackBrown: var(--color-blackBrown);
     --color-gray: #8a817c;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    scrollbar-width: none;
 }
