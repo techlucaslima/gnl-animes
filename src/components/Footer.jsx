@@ -2,7 +2,7 @@ import icone from '../assets/icone.png';
 
 export default function Footer() {
     return (
-        <footer className='bg-newBlack text-newWhite text-sm p-4'>
+        <footer className='flex-1 bg-newBlack text-newWhite text-sm p-4 flex flex-col justify-end'>
             <div className='flex text-3xl xl:text-4xl font-bold items-center'>
                 <img className="h-15" src={icone} alt="Ícone da logo do site" />
                 <h1>GNL</h1>
