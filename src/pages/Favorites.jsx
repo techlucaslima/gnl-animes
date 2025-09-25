@@ -28,7 +28,7 @@ function Favorites() {
       <div className="px-6 flex flex-wrap justify-center gap-4">
         {
           fullFavorites.map((favorite, index) => (
-            <div className="gap-3" key={index} onClick={() => navigate(`/anime/${favorite.id}`)}>
+            <div className="gap-3 w-35" key={index} onClick={() => navigate(`/anime/${favorite.id}`)}>
               <div className="h-55 w-35 bg-cover bg-center"
               style={{backgroundImage: `url(${favorite.imageCard})`}}></div>
               <h3 className="text-white font-semibold">{favorite.name}</h3>
